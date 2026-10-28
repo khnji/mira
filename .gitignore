@@ -1,0 +1,18 @@
+# dependencies
+node_modules
+
+# build output
+dist
+
+# secrets — never commit provider keys
+.env
+.env.local
+.env.*.local
+
+# editor
+.vscode
+.idea
+.DS_Store
+
+# logs
+*.log

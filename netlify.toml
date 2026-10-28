@@ -1,0 +1,27 @@
+# Mira — static deploy, zero server maintenance.
+# The app calls Groq, Gemini and Pollinations directly from the browser (BYOK chat + keyless images),
+# so no functions or servers are required on Netlify.
+#
+# Image generation needs no environment variables: it uses Pollinations'
+# free, keyless image API directly from the browser.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single-page app fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
